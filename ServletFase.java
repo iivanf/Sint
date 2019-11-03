@@ -10,7 +10,9 @@ import org.w3c.dom.Element;
 
 public class ServletFase extends HttpServlet{
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+    throws IOException, ServletException{
 
         //parametros que recibo
         String pwd = req.getParameter("p"); //password
@@ -337,6 +339,6 @@ public class ServletFase extends HttpServlet{
   }
 
 //**********************AQUI ACABAN OS METODOS DE CADA FASE********************************************************//
-
+  
 
 }                           
