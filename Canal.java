@@ -8,7 +8,6 @@ public class Canal implements Comparable<Canal>{
 
 
 
-
 	@Override
 	public int compareTo(Canal c){
 		//Este e o contrario do Disco

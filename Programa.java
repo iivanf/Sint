@@ -11,7 +11,6 @@ public class Programa implements Comparable<Programa>{
 
 
 
-
 	@Override
 	public int compareTo(Programa c){
 		//Este e o contrario do Disco
