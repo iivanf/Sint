@@ -117,7 +117,7 @@ public class MyDomParser{
             programas.add(programaAux);
         }
         for(int i=0; i<programas.size();i++){
-            System.out.println(programas.get(i).getNombrePrograma();
+            System.out.println(programas.get(i).getNombrePrograma());
         }
 
         } catch (ParserConfigurationException e) {
