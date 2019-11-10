@@ -78,10 +78,10 @@ public class Programa implements Comparable<Programa>{
 	public void setNombrePrograma(String NombrePrograma){
 		this.NombrePrograma=NombrePrograma;
 	}
-	public void setlCategoria(String Categoria) {
+	public void setCategoria(String Categoria) {
 		this.Categoria=Categoria;
 	}
-	public void seetHoraInicio(String HoraInicio) {
+	public void setHoraInicio(String HoraInicio) {
 		this.HoraInicio=HoraInicio;
 	}
 	public void setHoraFin(String HoraFin) {

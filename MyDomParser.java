@@ -85,39 +85,34 @@ public class MyDomParser{
         }
 
 
-        //getC1Programas
+        //getC1Pelicula
         String canal="T5";
-        exp ="//Programa[../NombreCanal='"+canal+"']/@edadminima";
-        NodeList listaedadminima = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
-        exp ="//Programa[../NombreCanal='"+canal+"']/@langs";
-        NodeList listalangs = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
-        exp ="//Programa[../NombreCanal='"+canal+"']/NombrePrograma";
-        NodeList listaNombrePrograma = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
-        exp ="//Programa[../NombreCanal='"+canal+"']/Categoria";
-        NodeList listaCategoria = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
-        exp ="//Programa[../NombreCanal='"+canal+"']/HoraInicio";
-        NodeList listaHoraInicio = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
-        exp ="//Programa[../NombreCanal='"+canal+"']/HoraFin";
-        NodeList listaHoraFin = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
-        exp ="//Programa[../NombreCanal='"+canal+"']/Duracion";
-        NodeList listaDuracion = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
-        for(int i=0; i<listaedadminima.getLength();i++){
+        exp ="//Programa[(Categoria='Cine')and(../NombreCanal='"+canal+"')]";
+        NodeList listaProgramas = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
+        NodeList aux;
+        for(int i=0; i<listaProgramas.getLength();i++){
             Programa programaAux = new Programa();
-            programaAux.setedadminima(listaedadminima.item(i).getTextContent());
-            programaAux.setlangs(listalangs.item(i).getTextContent());
-            programaAux.setNombrePrograma(listaNombrePrograma.item(i).getTextContent());
-            programaAux.setlCategoria(listaCategoria.item(i).getTextContent());
-            programaAux.seetHoraInicio(listaHoraInicio.item(i).getTextContent());
-            /*if(listaHoraFin.item(i).getTextContent()!=null){
-                programaAux.setHoraFin(listaHoraFin.item(i).getTextContent());
+            programaAux.setlangs(listaProgramas.item(i).getAttributes().getNamedItem("langs").getNodeValue());
+            aux=(NodeList) xpath.evaluate("NombrePrograma", listaProgramas.item(i), XPathConstants.NODESET);
+            programaAux.setNombrePrograma(aux.item(0).getFirstChild().getTextContent());
+            aux=(NodeList) xpath.evaluate("Categoria", listaProgramas.item(i), XPathConstants.NODESET);
+            programaAux.setCategoria(aux.item(0).getFirstChild().getTextContent());
+            aux=(NodeList) xpath.evaluate("HoraInicio", listaProgramas.item(i), XPathConstants.NODESET);
+            programaAux.setHoraInicio(aux.item(0).getFirstChild().getTextContent());
+            aux=(NodeList) xpath.evaluate("Duracion", listaProgramas.item(i), XPathConstants.NODESET);
+            if (aux.getLength() != 0){
+                programaAux.setDuracion(aux.item(0).getFirstChild().getTextContent());
             }
-            if(listaDuracion.item(i).getTextContent()!=null){
-                programaAux.setDuracion(listaDuracion.item(i).getTextContent());
-            }*/
+            aux=(NodeList) xpath.evaluate("HoraFin", listaProgramas.item(i), XPathConstants.NODESET);
+            if (aux.getLength() != 0){
+                programaAux.setHoraFin(aux.item(0).getFirstChild().getTextContent());
+            }
             programas.add(programaAux);
+            
         }
+        
         for(int i=0; i<programas.size();i++){
-            System.out.println(programas.get(i).getNombrePrograma());
+            System.out.println(programas.get(i).getlangs()+" "+programas.get(i).getNombrePrograma()+" "+programas.get(i).getDuracion()+programas.get(i).getHoraFin());
         }
 
         } catch (ParserConfigurationException e) {
