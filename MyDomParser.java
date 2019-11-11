@@ -107,12 +107,14 @@ public class MyDomParser{
             if (aux.getLength() != 0){
                 programaAux.setHoraFin(aux.item(0).getFirstChild().getTextContent());
             }
+            String descripcion = (String)xpath.evaluate("text()[normalize-space()]",listaProgramas.item(i), XPathConstants.STRING);
+            programaAux.setResumen(descripcion.trim());
             programas.add(programaAux);
             
         }
         
         for(int i=0; i<programas.size();i++){
-            System.out.println(programas.get(i).getlangs()+" "+programas.get(i).getNombrePrograma()+" "+programas.get(i).getDuracion()+programas.get(i).getHoraFin());
+            System.out.println(programas.get(i).getResumen());
         }
 
         } catch (ParserConfigurationException e) {
