@@ -37,22 +37,17 @@ public class MyDomParser{
             NodeList documents = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
             //METO NO MAP O 1º DOCUMENTO PARA QUE NN SE ME REPITA
             mapDocs.put(dia, doc);
-
-            //creo o iterator e vouno avanzando para mierar todos os documentos
-            //Iterator it = mapDocs.entrySet().iterator();
-            //while (it.hasNext()) {            
-             //meto todos os documentos que leo neste
+             //meto todos os documentos que leo neste e nn estean xa
                 for(int i=0; i<documents.getLength(); i++){
                     documento = documents.item(i).getTextContent();
                     dia = documento.substring(documento.indexOf("-")+1,documento.length()-4);
                     if(!mapDocs.containsKey(dia)){
                         System.out.println(dia);
-                        //doc = builder.parse(new URL (url+documento).openStream());
+                        
                         mapDocs.put(dia, doc);
-                        //it = mapDocs.entrySet().iterator();
-                    }        
+                        
                 }         
-           // }
+       
         //getC1fechas();
            exp="//Fecha";
            NodeList fecha = (NodeList)xpath.evaluate(exp, doc, XPathConstants.NODESET);
