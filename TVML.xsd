@@ -1,0 +1,14 @@
+<xs:schema elementFormDefault="Programacion">
+  <xs:element name="Canal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NombreCanal" type="xs:string"/>
+        <xs:element name="Grupo" type="xs:string" minOccurs="0"/>
+        <xs:element name="Programa" type="cs:string" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="idCanal" type="xs:positiveInteger"/>
+      <xs:atribute name="lang" type="tIdioma" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>
