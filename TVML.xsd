@@ -1,14 +1,36 @@
-<xs:schema elementFormDefault="Programacion">
-  <xs:element name="Canal">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Programacion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="NombreCanal" type="xs:string"/>
-        <xs:element name="Grupo" type="xs:string" minOccurs="0"/>
-        <xs:element name="Programa" type="cs:string" maxOccurs="unbounded"/>
+        <xs:element type="xs:string" name="Fecha"/>
+        <xs:element name="Canal" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+              <xs:element type="xs:string" name="NombreCanal"/>
+              <xs:element type="xs:string" name="Grupo"/>
+              <xs:element name="Programa">
+                <xs:complexType mixed="true">
+                    <xs:element type="xs:string" name="NombrePrograma"/>
+                    <xs:element type="xs:string" name="Categoria"/>
+                    <xs:element type="xs:string" name="HoraInicio"/>
+                    <xs:element type="xs:string" name="HoraFin"/>
+                    <xs:element type="xs:string" name="Duracion"/>
+                    <xs:element name="OtraEmision">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="TVML"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="fecha" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  <xs:attribute type="xs:string" name="edadminima" use="optional"/>
+                  <xs:attribute type="xs:string" name="langs" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            <xs:attribute type="xs:string" name="lang" use="optional"/>
+            <xs:attribute type="xs:string" name="idCanal" use="optional"/>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
-      <xs:attribute name="idCanal" type="xs:positiveInteger"/>
-      <xs:atribute name="lang" type="tIdioma" use="required"/>
     </xs:complexType>
   </xs:element>
-  
 </xs:schema>
