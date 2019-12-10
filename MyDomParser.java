@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,6 +26,9 @@ public class MyDomParser{
         String url1= "http://gssi.det.uvigo.es/users/agil/public_html/SINT/19-20/tvml-2004-12-01.xml";
         String url= "http://gssi.det.uvigo.es/users/agil/public_html/SINT/19-20/";
         String dia = "2004-12-01";
+        String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
+        String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
+        String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
         String documento;
         
         ArrayList<String> fechas = new ArrayList<>();
@@ -32,8 +36,16 @@ public class MyDomParser{
         ArrayList<Programa> programas = new ArrayList<>();
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
+        factory.setNamespaceAware(true);
+        factory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
+        File fileSchema = new File("TVML.xsd");
+        factory.setAttribute(JAXP_SCHEMA_SOURCE, fileSchema);
+
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
+            TVML_ErrorHandler errorHandler = new TVML_ErrorHandler();
+            builder.setErrorHandler(errorHandler); 
             Document doc=builder.parse(new URL (url1).openStream());
             XPathFactory xPathFactory = XPathFactory.newInstance();
             XPath xpath = xPathFactory.newXPath();
