@@ -6,13 +6,11 @@ public class Canal implements Comparable<Canal>{
     private String NombreCanal;
 	private String Grupo;
 
-
-
 	@Override
 	public int compareTo(Canal c){
-		//Este e o contrario do Disco
-		if(this.getNombreCanal().compareTo(c.getNombreCanal()) <0 ) return 1;
-		else if(this.getNombreCanal().compareTo(c.getNombreCanal())  >0   ) return -1;
+		//por orden alfabetico do nome
+		if(this.getNombreCanal().compareTo(c.getNombreCanal()) >0 ) return 1;
+		else if(this.getNombreCanal().compareTo(c.getNombreCanal())  <0   ) return -1;
 		return 0;
 	}
 
