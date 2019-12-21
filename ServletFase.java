@@ -61,7 +61,6 @@ public class ServletFase extends HttpServlet{
       for (int i = 0; i < listaXMLs.size(); i++){
           leerXML(listaXMLs.get(i));
       }
-      System.out.println(mapDocs);
     } catch (IOException e) {
       System.out.println("Fallo na lectura dos arquivos");
     }
@@ -74,8 +73,6 @@ public class ServletFase extends HttpServlet{
         String pwd = req.getParameter("p"); //password
         String pfase = req.getParameter("pfase"); //tipo de consulta
         if (pfase == null){pfase="01";}
-        //String auto = req.getParameter("auto");// auto ou html
-        //PrintWriter out=res.getWriter();
         if(!(this.checkPwd(req , res))) return;
         
         switch(pfase){
@@ -128,9 +125,11 @@ public class ServletFase extends HttpServlet{
             out.println("<input type='submit' value='Enviar' onClick='document.forms.miform.elements.pfase.value=\"11\"'>");
             out.println("</form>");
             out.println("</body>");
+            out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
             out.println("</html>");
         }   else {
             res.setContentType("text/XML");
+            out.println("<? xml version='1.0' encoding='utf-8' ?>");
             out.println("<service>");
             out.println("<status>OK</status>");
             out.println("</service>");
@@ -155,6 +154,7 @@ public class ServletFase extends HttpServlet{
         out.println(listaErrores);
         out.println("</h2>");
         out.println("</body>");
+        out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
         out.println("</html>");
         return;
     }
@@ -192,11 +192,12 @@ public class ServletFase extends HttpServlet{
             out.println("<input type='submit' value='Atras' onClick='document.forms.miform.elements.pfase.value=\"01\"'>");
             out.println("</form>");
             out.println("</body>");
+            out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
             out.println("</html>");
         }   else {
             res.setContentType("text/XML");
+            out.println("<? xml version='1.0' encoding='utf-8' ?>");
             out.println("<dias>");
-
             for(int w=0; w < fechas.size(); w++){
               out.println("<dia>"+fechas.get(w).toString()+"</dia>");
             }
@@ -244,11 +245,12 @@ public class ServletFase extends HttpServlet{
             out.println("<input type='submit' value='Inicio' onClick='document.forms.miform.elements.pfase.value=\"01\"'>");
             out.println("</form>");
             out.println("</body>");
+            out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
             out.println("</html>");
         }   else {
             res.setContentType("text/XML");
+            out.println("<? xml version='1.0' encoding='utf-8' ?>");
             out.println("<canales>");
-            //out.println("<canal idioma=\"en\" grupo=\"A3Media\">A3</canal>");
             for(int w= 0; w<canales.size(); w++){
               Canal canal = canales.get(w);
               out.println("<canal idioma=\""+canal.getlang()+"\" grupo=\""+canal.getGrupo()+"\">"+canal.getNombreCanal()+"</canal>");
@@ -294,9 +296,11 @@ public class ServletFase extends HttpServlet{
             out.println("<input type='submit' value='Inicio' onClick='document.forms.miform.elements.pfase.value=\"01\"'>");
             out.println("</form>");
             out.println("</body>");
+            out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
             out.println("</html>");
         }   else {
             res.setContentType("text/XML");
+            out.println("<? xml version='1.0' encoding='utf-8' ?>");
             out.println("<peliculas>");
             for(int w= 0; w<programas.size(); w++){
               Programa pelicula = programas.get(w);
@@ -324,9 +328,11 @@ public class ServletFase extends HttpServlet{
               out.println("<body>");
               out.println("<h1>Password no introducida</h1>");
               out.println("</body>");
+              out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
               out.println("</html>");
           }   else {
               res.setContentType("text/XML");
+              out.println("<? xml version='1.0' encoding='utf-8' ?>");
               out.println("<wrongRequest>no passwd</wrongRequest>");
           }
           return false;
@@ -341,9 +347,11 @@ public class ServletFase extends HttpServlet{
               out.println("<body>");
               out.println("<h1>Password incorrecta</h1>");
               out.println("</body>");
+              out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
               out.println("</html>");
           }   else {
               res.setContentType("text/XML");
+              out.println("<? xml version='1.0' encoding='utf-8' ?>");
               out.println("<wrongRequest>bad passwd</wrongRequest>");
           }
           return false;
@@ -370,9 +378,11 @@ public class ServletFase extends HttpServlet{
             out.println("<body>");
             out.println("<h1>Paramento pdia no introducido</h1>");
             out.println("</body>");
+            out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
             out.println("</html>");
         }   else {
             res.setContentType("text/XML");
+            out.println("<? xml version='1.0' encoding='utf-8' ?>");
             out.println("<wrongRequest>no param:pdia</wrongRequest>");
         }
         return false;
@@ -400,9 +410,11 @@ public class ServletFase extends HttpServlet{
             out.println("<body>");
             out.println("<h1>Paramento pcanal no introducido</h1>");
             out.println("</body>");
+            out.println("<h6> <i>Práctica 2 - SINT | Iván Ferro Herbón </i> </h6>");
             out.println("</html>");
         }   else {
             res.setContentType("text/XML");
+            out.println("<? xml version='1.0' encoding='utf-8' ?>");
             out.println("<wrongRequest>no param:pcanal</wrongRequest>");
         }
         return false;
@@ -453,7 +465,6 @@ public void leerXML(String XML) throws ServletException, IOException, FileNotFou
 
         for(int i = 0; i<documents.getLength(); i++){
           documento = documents.item(i).getTextContent();
-          //dia = documento.substring(documento.indexOf("-")+1,documento.length()-4);
 
           if(!(documento.startsWith("http://"))){
            documento = url+documento; 
@@ -523,7 +534,6 @@ ArrayList<Canal> getc1Canales(String fecha){
   String exp;
 
       doc = mapDocs.get(fecha);
-      //System.out.println(doc.getTextContent());
       XPathFactory xPathFactory = XPathFactory.newInstance();
       XPath xpath = xPathFactory.newXPath();
       try{
