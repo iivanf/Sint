@@ -13,10 +13,14 @@ public class Programa implements Comparable<Programa>{
 
 	@Override
 	public int compareTo(Programa c){
-		//Este e o contrario do Disco
-		if(this.getNombrePrograma().compareTo(c.getNombrePrograma()) <0 ) return 1;
-		else if(this.getNombrePrograma().compareTo(c.getNombrePrograma())  >0   ) return -1;
-		return 0;
+		//por longitud titulo pelicula ou por hora de inicio
+		if (this.getNombrePrograma().length() > c.getNombrePrograma().length()) {
+            return 1;
+        } else if (this.getNombrePrograma().length() < c.getNombrePrograma().length()) {
+            return -1;
+        } else {
+            return this.getHoraInicio().compareTo(c.getHoraInicio());
+        }
 	}
 
 
