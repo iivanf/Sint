@@ -1,4 +1,4 @@
-
+package p2;
 public class Canal implements Comparable<Canal>{
 
     private String lang;

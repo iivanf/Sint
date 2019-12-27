@@ -1,3 +1,4 @@
+package p2;
 public class Programa implements Comparable<Programa>{
 
     private String edadminima;

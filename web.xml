@@ -6,11 +6,12 @@
      <display-name>ServletSimple </display-name>
      <description> Servlet muy simple </description>
      <servlet>
-           <servlet-name>Sint103P2</servlet-name>
-           <servlet-class>Sint103P2</servlet-class>
+           <servlet-name>Sint104P2</servlet-name>
+           <servlet-class>p2.Sint104P2</servlet-class>
      </servlet>
      <servlet-mapping>
            <servlet-name>Sint103P2</servlet-name>
            <url-pattern>/P2TV</url-pattern>   
 </servlet-mapping>
 </web-app>
+<!- A compilacion é javac -classpath 'C:\xampp2\tomcat\lib\servlet-api.jar' -d . Sint104P2.java TVML_ErrorHandler.java Programa.java Canal.java->
