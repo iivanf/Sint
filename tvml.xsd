@@ -1,0 +1,80 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="Programacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Fecha" type="tipofecha"></xs:element>
+        <xs:element name="Canal" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NombreCanal" type="xs:string"></xs:element>
+              <xs:element name="Grupo" type="xs:string" minOccurs="0"></xs:element>
+              <xs:element name="Programa" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:element name="NombrePrograma" type="xs:string"></xs:element>
+                    <xs:element name="Categoria" type="tipocat"></xs:element>
+                    <xs:element name="HoraInicio" type="tipohora"></xs:element>
+                    <xs:element name="HoraFin" type="tipohora" minOccurs="0"></xs:element>
+                    <xs:element name="Duracion" type="xs:int" minOccurs="0"></xs:element>
+                    <xs:element name="OtraEmision" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="TVML" type="xs:anyURI"></xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="fecha" type="tipofecha"></xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="edadminima" type="xs:int" use="required"></xs:attribute>
+                  <xs:attribute name="langs" type="tipolangs" use="optional"></xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="lang" type="tipolang" use="required"></xs:attribute>
+            <xs:attribute name="idCanal" type="xs:positiveInteger" use="optional"></xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:unique name="idUnica">
+      <xs:selector xpath="Canal"/>
+      <xs:field xpath="@idCanal"/>
+    </xs:unique>
+  </xs:element>
+
+
+  <xs:simpleType name="tipofecha">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}[/][0-9]{2}[/][0-9]{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipolang">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z]{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipolangs">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([a-zA-Z]{2}[\s]+)*([a-zA-Z]{2})" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipocat">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Informativos" />
+      <xs:enumeration value="Cine" />
+      <xs:enumeration value="Deportes" />
+      <xs:enumeration value="Infantiles" />
+      <xs:enumeration value="Documentales" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipohora">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{2}[:][0-9]{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
